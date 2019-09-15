@@ -1,4 +1,4 @@
-# RoIAlign - New style torch.autograd.Function for PyTorch > 1.3
+# RoIAlign - New style autograd.Function for PyTorch > 1.3
 
 
     pytorch warning:
