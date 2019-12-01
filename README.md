@@ -4,7 +4,34 @@
     pytorch warning:
     "Legacy autograd function with non-static forward method is deprecated and will be removed in 1.3. Please use new-style autograd function with static forward method.
 
+```python
+#### Old style
+class F(torch.autograd.Function):
+    def __init__(self, gamma=0.1):
+        super().__init__()
+        self.gamma = gamma
 
+    def forward(self, args):
+        pass
+    def backward(self, args):
+        pass
+
+#### New style
+class F_new(torch.autograd.Function):
+    @staticmethod
+    def forward(ctx, args, gamma):
+        ctx.gamma = gamma
+        pass
+
+    @staticmethod
+    def backward(ctx, args):
+        pass
+
+# Using your old style Function from your code sample:
+F(gamma)(inp)
+# Using the new style Function:
+F_new.apply(inp, gamma)
+```
 [reference](https://discuss.pytorch.org/t/difference-between-apply-an-call-for-an-autograd-function/13845/4)
 
 # [RoIAlign for PyTorch](https://github.com/longcw/RoIAlign.pytorch) (original version)
